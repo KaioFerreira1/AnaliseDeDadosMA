@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafico Corr Indicadores</title>
+</head>
+<body>
+    <h1>Matriz de Correlação entre Indicadores</h1>
+    <form action="/grafcorrindicadores" method="post">
+            <input type="submit" value="Enviar Dados BD">
+        </form>
+    {{ grafico3|safe }}
+    <div id="grafico"></div>
+</body>
+</html>

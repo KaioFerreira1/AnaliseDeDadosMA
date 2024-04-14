@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" type="text/css" href="static/style2.css">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+        <h3>Bem-vindo ao Menu</h3>
+        <div class="chart-options">
+                  <input type="submit" name="submit" value="Gerar Grafico (PIB por municípios)" onclick="window.location.href='/pibpormunicipios';">
+        </div>
+        <div class="chart-options">
+                  <input type="submit" name="submit" value="Gerar Grafico (Matriculas realizadas nas escolas da PB)" onclick="window.location.href='/grafmatriculaspb';">
+        </div>
+        <div class="chart-options">
+                  <input type="submit" name="submit" value="Gerar Grafico (Matriz Correlação de dados)" onclick="window.location.href='/grafcorrindicadores';">
+        </div>
+
+    {{ mapa | safe }}
+</body>
+</html>
