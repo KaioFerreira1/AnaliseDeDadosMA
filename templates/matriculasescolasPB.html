@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gráfico de matriculas realizadas na Paraíba</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="static/style3.css">
 </head>
 <body>
 <h1>Gráfico das matriculas realizadas na Paraíba</h1>
     <form action="/grafmatriculaspb" method="post">
-            <input type="submit" value="Enviar dados BD">
             <input type="submit" value="Visualizar gráfico">
+        {{ grafico2|safe }}
     </form>
-    {{ grafico2|safe }}
+    <form action="/enviardadosbdmatriculas" method="post">
+        <input type="submit" value="Enviar Dados BD">
+    </form>
+
 </body>
 </html>

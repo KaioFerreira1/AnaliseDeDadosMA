@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafico Distribuiçâo do PIB por municípios</title>
+    <link rel="stylesheet" href="static/style3.css">
+</head>
+<body>
+<h1>
+    Gráfico Distribuição do PIB por municípios
+</h1>
+
+
+<div class="container">
+<form action="/grafdistribuicaopib" method="post">
+    <div class="input-container">
+            <input type="number" id="num_municipios" name="num_municipios" value="0" min="1">
+            <input type="submit" value="Visualizar">
+        </div>
+    {{ grafico4|safe }}
+</form>
+</div>
+</body>
+</html>

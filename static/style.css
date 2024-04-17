@@ -1,37 +1,44 @@
-/* Estilos gerais */
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 body {
-    font-family: Arial, sans-serif;
-    background-color: #201b2c;
+    background-color: #201B2C;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-family: 'Noto Sans';
+}
+h1, p a{
+    color: #02FE88;
+}
+p a:hover{
+    color: #02FE88;
 }
 
-/* Estilos do contêiner */
+p {
+    color: #C7D0D9;
+}
+label {
+    color: #C7D0D9;
+}
 .container {
-    background-color: #fff;
+    background-color: #2F2841;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px #02FE88;
     padding: 20px;
     width: 300px;
 }
 
-/* Estilos do formulário */
 form {
     display: flex;
     flex-direction: column;
 }
 
-/* Estilos das etiquetas */
 label {
     margin-bottom: 5px;
 }
 
-/* Estilos dos campos de entrada */
 input[type="text"],
 input[type="password"] {
     padding: 10px;
@@ -40,34 +47,29 @@ input[type="password"] {
     border: 1px solid #ccc;
 }
 
-/* Estilos do botão de envio */
 input[type="submit"] {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50;
+    background-color: #02FE88;
     color: white;
     cursor: pointer;
 }
 
-/* Estilos de hover do botão de envio */
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #02FE88;
 }
 
-/* Estilos dos links */
 a {
     text-decoration: none;
     color: #007bff;
 }
 
-/* Estilos de hover dos links */
 a:hover {
     text-decoration: underline;
     color: #0056b3;
 }
 
-/* Estilos do parágrafo */
 p {
     margin-top: 10px;
     text-align: center;

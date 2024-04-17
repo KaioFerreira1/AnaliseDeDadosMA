@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grafico Corr Indicadores</title>
+    <link rel="stylesheet" href="static/style3.css">
 </head>
 <body>
     <h1>Matriz de Correlação entre Indicadores</h1>
     <form action="/grafcorrindicadores" method="post">
-            <input type="submit" value="Enviar Dados BD">
+            <input type="submit" value="Gerar Gráfico">
+        {{ grafico3|safe }}
         </form>
-    {{ grafico3|safe }}
+    <form action="/enviardadosbd" method="post">
+        <input type="submit" value="Enviar Dados BD">
+    </form>
     <div id="grafico"></div>
 </body>
 </html>

@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <link rel="stylesheet" type="text/css" href="static/style2.css">
+    <link rel="stylesheet" type="text/css" href="static/style2.css"> <!-- Alterado o nome do arquivo CSS -->
 </head>
 <body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
+    <div class="container">
         <h3>Bem-vindo ao Menu</h3>
         <div class="chart-options">
-                  <input type="submit" name="submit" value="Gerar Grafico (PIB por municípios)" onclick="window.location.href='/pibpormunicipios';">
+            <input type="submit" name="submit" value="Gerar Gráfico (PIB por municípios)" onclick="window.location.href='/pibpormunicipios';">
         </div>
         <div class="chart-options">
-                  <input type="submit" name="submit" value="Gerar Grafico (Matriculas realizadas nas escolas da PB)" onclick="window.location.href='/grafmatriculaspb';">
+            <input type="submit" name="submit" value="Gerar Gráfico (Matrículas realizadas nas escolas da PB)" onclick="window.location.href='/grafmatriculaspb';">
         </div>
         <div class="chart-options">
-                  <input type="submit" name="submit" value="Gerar Grafico (Matriz Correlação de dados)" onclick="window.location.href='/grafcorrindicadores';">
+            <input type="submit" name="submit" value="Gerar Gráfico (Matriz Correlação de dados)" onclick="window.location.href='/grafcorrindicadores';">
         </div>
-
-    {{ mapa | safe }}
+        <div class="chart-options">
+            <input type="submit" name="submit" value="Gerar Gráfico (Distribuição do PIB por Municípios)" onclick="window.location.href='/grafdistribuicaopib';">
+        </div>
+    </div>
 </body>
 </html>

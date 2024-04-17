@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evolução do PIB da Paraíba</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="static/style3.css">
 </head>
 <body>
     <form action="/pibpormunicipios" method="post">
         <label for="num_municipios">Quantidade de municípios a serem exibidos:</label>
         <div class="input-container">
-            <input type="number" id="num_municipios" name="num_municipios" value="5" min="1">
+            <input type="number" id="num_municipios" name="num_municipios" value="0" min="1">
             <input type="submit" value="Visualizar">
         </div>
+    </form>
+
+    <form action="/enviardadosbdpibMun" method="post">
+        <input type="submit" value="Enviar Dados BD">
     </form>
     {{ grafico1|safe }}
 </body>

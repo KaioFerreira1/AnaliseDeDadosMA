@@ -42,12 +42,18 @@ def cadastrar_usuario():
 
 
 @app.route('/pibpormunicipios', methods=['GET', 'POST'])
-def pibpormunicipios():
+def pib_por_municipios():
     if request.method == 'POST':
         dados = da.lerdados1()
         dados_ordenados = dados.sort_values(by='PIB', ascending=False)
         num_municipios = int(request.form['num_municipios'])
         melhores_municipios = dados_ordenados.head(num_municipios)
+
+        # salvar os dados no banco de dados
+        conexao = dao.conectardb()
+        dao.salvar_grafico_pib_municipios(conexao, melhores_municipios)
+        conexao.close()
+
         fig = px.bar(melhores_municipios, x='Municipios', y='PIB',
                      color='Municipios',
                      title='Grafíco de PIB por Municípios')
@@ -57,7 +63,7 @@ def pibpormunicipios():
 
 
 @app.route('/grafmatriculaspb', methods=['GET', 'POST'])
-def grafmatriculaspb():
+def graf_matriculas_pb():
     if request.method == 'POST':
         dados = da.lerdados2()
         dados['Total Matrículas'] = dados.sum(axis=1)
@@ -74,24 +80,69 @@ def grafmatriculaspb():
 @app.route('/grafcorrindicadores', methods=['GET', 'POST'])
 def correlacao_indicadores():
     if request.method == 'POST':
-        # Carregar os dados
         dados = da.lerdados()
 
-        # Calculando a matriz de correlação
+        # Calcula a matriz de correlação
         matriz_correlacao = dados.corr()
 
-        # Criando o gráfico de matriz de correlação usando Plotly
+        dao.salvar_correlacao_banco(matriz_correlacao)
+
         fig = px.imshow(matriz_correlacao,
                         labels=dict(x="Indicadores", y="Indicadores", color="Correlação"),
                         x=matriz_correlacao.columns,
                         y=matriz_correlacao.columns,
                         title='Matriz de Correlação entre Indicadores')
 
-        # Renderizar o gráfico e passar para o template HTML
         return render_template('graficomatrizcorr.html', grafico3=fig.to_html())
     else:
         return render_template('graficomatrizcorr.html')
 
+
+@app.route('/grafdistribuicaopib', methods=['GET', 'POST'])
+def graf_distribuicao_pib():
+    if request.method == 'POST':
+        dados = da.lerdados1()
+        # Calcular a porcentagem de cada município em relação ao total do PIB
+        dados['Porcentagem'] = (dados['PIB'] / dados['PIB'].sum()) * 100
+
+        dados_ordenados = dados.sort_values(by='PIB', ascending=False)
+        num_municipios = int(request.form['num_municipios'])
+        melhores_municipios = dados_ordenados.head(num_municipios)
+
+        fig = px.pie(melhores_municipios,
+                     values='Porcentagem',
+                     names='Municipios',
+                     title='Distribuição do PIB por Município')
+        return render_template('graficodistribuicaopib.html', grafico4=fig.to_html())
+    else:
+        return render_template('graficodistribuicaopib.html')
+
+@app.route('/enviardadosbdcorr', methods=['POST'])
+def enviar_dados_bd():
+    dados = da.lerdados()
+    matriz_correlacao = dados.corr()
+    dao.salvar_correlacao_banco(matriz_correlacao)
+    return redirect('/grafcorrindicadores')
+
+@app.route('/enviardadosbdpibMun', methods=['POST'])
+def enviar_dados_bd2():
+    conexao = dao.conectardb()
+    dados = da.lerdados1()
+    dados_ordenados = dados.sort_values(by='PIB', ascending=False)
+    num_municipios = 0
+    melhores_municipios = dados_ordenados.head(num_municipios)
+    dao.salvar_grafico_pib_municipios(conexao, melhores_municipios)
+    conexao.close()
+    return redirect('/pibpormunicipios')
+
+@app.route('/enviardadosbdmatriculas', methods=['POST'])
+def enviar_dados_bd_matriculas():
+    conexao = dao.conectardb()
+    dados = da.lerdados2()
+    dados['Total Matrículas'] = dados.sum(axis=1)
+    dao.salvar_dados_matriculas(conexao, dados)
+    conexao.close()
+    return redirect('/grafmatriculaspb')
 
 @app.route('/menu')
 def menu():
